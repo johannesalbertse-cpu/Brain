@@ -1,0 +1,12 @@
+TerraFlux final review - 2026-05-03T11:48:27.5509740+02:00
+Workspace: C:\Users\johan\Desktop\TerraFlux-Workspace
+
+1) Inspect backups folder: C:\Users\johan\Desktop\TerraFlux-Workspace\backups
+2) Inspect duplicates archive(s): C:\Users\johan\Desktop\TerraFlux-Workspace\backups\duplicates-*
+3) Inspect move log(s): C:\Users\johan\Desktop\TerraFlux-Workspace\logs\move_log_*.txt
+4) Inspect inventory: C:\Users\johan\Desktop\TerraFlux-Workspace\logs\candidate_files_*.csv
+
+If you are satisfied and want to permanently delete archived duplicates, run the exact command below (copy/paste):
+  Remove-Item -Path 'C:\Users\johan\Desktop\TerraFlux-Workspace\backups\duplicates-<timestamp>' -Recurse -Force
+
+Replace <timestamp> with the archive folder name. Do NOT run this until you have verified backups.

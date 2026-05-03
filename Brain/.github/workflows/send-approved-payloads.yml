@@ -1,0 +1,43 @@
+name: Send Approved Payloads
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Find payloads
+        id: find
+        run: |
+          files=$(ls terraflux/nervous/queue/payload-*.json 2>/dev/null || true)
+          echo "::set-output name=files::$files"
+
+      - name: Abort if no payloads
+        if: steps.find.outputs.files == ''
+        run: echo "No payloads found; nothing to send."
+
+      - name: Send payloads to Claude
+        if: steps.find.outputs.files != ''
+        env:
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+        run: |
+          mkdir -p terraflux/backups/payload-archive
+          for f in terraflux/nervous/queue/payload-*.json; do
+            echo "Sending $f"
+            curl -s -X POST "https://api.claude.yourprovider/v1/respond" \
+              -H "Authorization: Bearer ${CLAUDE_API_KEY}" \
+              -H "Content-Type: application/json" \
+              --data-binary @"$f" > "terraflux/backups/$(basename $f)-response.json" || true
+            mv "$f" terraflux/backups/payload-archive/
+          done
+

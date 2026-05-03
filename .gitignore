@@ -1,0 +1,8 @@
+# Ignore large or local-only files
+*.zip
+*.tgz
+*.log
+*.sqlite
+node_modules/
+.vscode/
+.DS_Store
