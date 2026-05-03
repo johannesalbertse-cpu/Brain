@@ -1,0 +1,11 @@
+﻿{
+    "timestamp":  "2026-05-03T12:22:23.5776064+02:00",
+    "disk_free_gb":  97.81,
+    "recent_log_errors":  [
+
+                          ],
+    "vectordb":  {
+                     "error":  "no endpoint configured",
+                     "reachable":  false
+                 }
+}

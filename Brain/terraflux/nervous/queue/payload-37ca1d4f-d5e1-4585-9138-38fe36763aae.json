@@ -1,0 +1,12 @@
+{
+  "payload": {
+    "prompt": "Summarize this test note.",
+    "model": "placeholder",
+    "metadata": {
+      "created_by": "johan"
+    }
+  },
+  "approved_by": "johan",
+  "id": "37ca1d4f-d5e1-4585-9138-38fe36763aae",
+  "approved_at": "2026-05-03T12:31:26.5449013+02:00"
+}

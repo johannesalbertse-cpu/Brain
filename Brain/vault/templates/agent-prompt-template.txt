@@ -1,0 +1,9 @@
+# AGENT PROMPT TEMPLATE
+# Fill these fields programmatically. Agent must NOT include secrets.
+purpose: <short purpose>
+input_files: [list of vault paths]
+constraints:
+  - write only to vault/suggestions/
+  - include frontmatter: agent_suggestion: true; confidence: 0.0-1.0; rationale: string
+output_format: markdown file with frontmatter and proposed diff
+approval_required: true

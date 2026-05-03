@@ -1,11 +1,20 @@
-# Brain
-This folder is the collaborative planning space for TerraFlux and Copilot sessions.
-- plans/: project plans and roadmaps
-- meetings/: meeting notes and action items
-- templates/: meeting and planning templates
-- archive/: older plans and completed items
+# Brain — Quick Commands (TerraFlux)
+Run these from any PowerShell prompt.
 
-Meeting protocol
-1. Create a meeting note in meetings/ with date and attendees.
-2. Use templates/meeting-note.md for structure.
-3. Add action items with owners and due dates.
+Daily start (Brain Mode):
+  - Open PowerShell - Brain (shortcut) or run: brain
+
+Quick commands:
+  - Backup now: tf-backup
+  - Healthcheck now: tf-health
+  - Run ingest scaffold: tf-ingest
+  - Find duplicates report: tf-finddups
+  - Rotate logs: powershell -File terraflux\scripts\rotate_logs.ps1
+  - Restore preview: powershell -File terraflux\scripts\restore_latest_backup.ps1
+
+Maintenance:
+  - Inspect status: terraflux\monitor\status.json
+  - Inspect logs: terraflux\logs\
+
+Security:
+  - Do NOT store API keys in files. Use your secret manager or GitHub Actions secrets.

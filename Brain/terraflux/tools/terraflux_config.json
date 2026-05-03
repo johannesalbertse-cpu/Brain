@@ -1,0 +1,8 @@
+{
+  "daily_token_threshold": 100000,
+  "workspace": "C:\\Users\\johan\\Desktop\\TerraFlux-Workspace\\Brain",
+  "vault": "C:\\Users\\johan\\Desktop\\TerraFlux-Workspace\\Brain\\vault",
+  "claude_key_ref": "<STORE_CLAUDE_KEY_IN_SECRET_MANAGER>",
+  "vectordb_endpoint": "https://your-vectordb-endpoint.example/health",
+  "copilot_key_ref": "<STORE_COPILOT_KEY_IN_SECRET_MANAGER>"
+}

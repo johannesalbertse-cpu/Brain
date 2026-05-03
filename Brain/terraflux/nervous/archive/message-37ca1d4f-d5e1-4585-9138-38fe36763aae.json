@@ -1,0 +1,22 @@
+﻿{
+    "id":  "37ca1d4f-d5e1-4585-9138-38fe36763aae",
+    "created_at":  "2026-05-03T12:29:36.7683559+02:00",
+    "agent":  "claude",
+    "purpose":  "test summary",
+    "files":  [
+
+              ],
+    "payload":  {
+                    "prompt":  "Summarize this test note.",
+                    "model":  "placeholder",
+                    "metadata":  {
+                                     "created_by":  "johan"
+                                 }
+                },
+    "status":  "pending",
+    "approval":  {
+                     "approved_by":  null,
+                     "approved_at":  null,
+                     "required":  true
+                 }
+}

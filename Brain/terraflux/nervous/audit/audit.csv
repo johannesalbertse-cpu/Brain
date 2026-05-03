@@ -1,0 +1,3 @@
+id,created_at,agent,purpose,payload_path,status,approved_by,approved_at,result_path,notes
+37e885e6-9648-4cfa-9d91-0cb74890808c,2026-05-03T12:26:44.6658937+02:00,local,unspecified,C:\Users\johan\Desktop\TerraFlux-Workspace\Brain\terraflux\nervous\queue\message-37e885e6-9648-4cfa-9d91-0cb74890808c.json,pending,,
+37ca1d4f-d5e1-4585-9138-38fe36763aae,2026-05-03T12:29:36.7683559+02:00,claude,test summary,C:\Users\johan\Desktop\TerraFlux-Workspace\Brain\terraflux\nervous\queue\message-37ca1d4f-d5e1-4585-9138-38fe36763aae.json,pending,,
