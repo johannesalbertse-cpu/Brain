@@ -1,0 +1,11 @@
+name: Validate workflow uses
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  validate-uses:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate uses lines
+        run: pwsh .github/actions/validate-uses/validate.ps1
