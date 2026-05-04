@@ -5,3 +5,8 @@
 - **Action taken:** Replaced powershell/powershell@v1 with actions/setup-powershell@v2; created .bak snapshot; opened PR and merged.
 - **Verification:** Validator returned no unsupported uses patterns; latest run shows no ##[error] lines.
 - **Follow-up:** Keep .bak until two successful runs; pin third-party actions; add pre-merge validation for uses lines.
+## Incident: PowerShell action resolution — 2026-05-04
+- Run-id: <runId>
+- Head SHA: <HEAD_SHA>
+- Action taken: Replaced powershell/powershell@v1 with actions/setup-powershell@v2
+
