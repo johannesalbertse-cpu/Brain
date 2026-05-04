@@ -1,0 +1,77 @@
+name: Send Approved Payloads to OpenAI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  send-approved-payloads:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PowerShell
+        uses: actions/setup-powershell@v2
+
+      - name: Find payloads
+        id: find
+        run: |
+          shopt -s nullglob || true
+          files=(terraflux/nervous/queue/payload-*.json)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "no_files=true" >> $GITHUB_OUTPUT
+          else
+            echo "no_files=false" >> $GITHUB_OUTPUT
+            printf "%s\n" "${files[@]}" > payload_list.txt
+            echo "payload_list=payload_list.txt" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Abort if no payloads
+        if: steps.find.outputs.no_files == 'true'
+        run: echo "No approved payloads found; nothing to send."
+
+      - name: Send payloads to OpenAI
+        if: steps.find.outputs.no_files == 'false'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          AUDIT_CSV_PATH: terraflux/nervous/audit/audit.csv
+        run: |
+          pwsh -NoProfile -Command "
+          $root = '${{ github.workspace }}'
+          $backups = Join-Path $root 'terraflux/backups'
+          if (-not (Test-Path $backups)) { New-Item -ItemType Directory -Path $backups -Force | Out-Null }
+          $payloadList = Get-Content payload_list.txt
+          foreach ($p in $payloadList) {
+            Write-Host 'Processing' $p
+            $body = Get-Content $p -Raw
+            $endpoint = 'https://api.openai.com/v1/chat/completions'
+            try {
+              $resp = Invoke-RestMethod -Uri $endpoint -Method Post -Headers @{ Authorization = 'Bearer ' + $env:OPENAI_API_KEY; 'Content-Type' = 'application/json' } -Body $body -TimeoutSec 120
+              $respJson = $resp | ConvertTo-Json -Depth 20
+              $responsePath = Join-Path $backups ('response-' + (Split-Path $p -Leaf) + '.json')
+              $respJson | Out-File -FilePath $responsePath -Encoding utf8 -Force
+
+              # Redact PII using helper
+              $redacted = & pwsh -NoProfile -File terraflux/scripts/redact-response.ps1 -InputPath $responsePath
+              if ($redacted) { $redacted | Out-File -FilePath $responsePath -Encoding utf8 -Force }
+
+              # Archive payload
+              $archiveDir = Join-Path $backups 'payload-archive'
+              if (-not (Test-Path $archiveDir)) { New-Item -ItemType Directory -Path $archiveDir -Force | Out-Null }
+              Move-Item -Path $p -Destination $archiveDir -Force
+
+              # Update audit CSV
+              if (-not (Test-Path $env:AUDIT_CSV_PATH)) { 'id,created_at,agent,purpose,payload_path,status,approved_by,approved_at,result_path,notes' | Out-File -FilePath $env:AUDIT_CSV_PATH -Encoding utf8 -Force }
+              $payloadJson = $body | ConvertFrom-Json
+              $id = $payloadJson.id
+              $line = \"$id,$((Get-Date).ToString('o')),$($payloadJson.payload.model),$($payloadJson.payload.metadata.created_by),$p,sent,ci,$((Get-Date).ToString('o')),$responsePath,ci-send\"
+              $line | Out-File -FilePath $env:AUDIT_CSV_PATH -Append -Encoding utf8
+            } catch {
+              Write-Host 'Send failed for' $p ': ' $_.Exception.Message
+              \"$((Get-Date).ToString('o')),$p,send_failed,$($_.Exception.Message)\" | Out-File -FilePath terraflux/nervous/send-log.csv -Append -Encoding utf8
+            }
+          }
+          "
