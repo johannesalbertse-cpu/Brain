@@ -1,0 +1,24 @@
+{
+  "id": "5e497fe9-1c76-4ec4-aee7-3b88a1f3a6d0",
+  "created_at": "2026-05-04T09:42:35.7389200+02:00",
+  "agent": "super-copilot",
+  "purpose": "unspecified",
+  "files": [],
+  "retrieval": {
+    "top_k": 5,
+    "enabled": true
+  },
+  "payload": {
+    "prompt": "",
+    "model": "copilot-latest",
+    "metadata": {
+      "created_by": "johan"
+    }
+  },
+  "status": "pending",
+  "approval": {
+    "approved_by": null,
+    "required": true,
+    "approved_at": null
+  }
+}

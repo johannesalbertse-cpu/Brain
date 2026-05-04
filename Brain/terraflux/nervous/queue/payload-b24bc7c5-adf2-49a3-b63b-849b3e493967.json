@@ -1,0 +1,12 @@
+{
+  "payload": {
+    "prompt": "Summarize this test note in 3 bullets.",
+    "model": "copilot-latest",
+    "metadata": {
+      "created_by": "johan"
+    }
+  },
+  "approved_by": "johan",
+  "id": "b24bc7c5-adf2-49a3-b63b-849b3e493967",
+  "approved_at": "2026-05-04T09:47:01.1075349+02:00"
+}

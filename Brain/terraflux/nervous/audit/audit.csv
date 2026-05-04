@@ -1,3 +1,7 @@
 id,created_at,agent,purpose,payload_path,status,approved_by,approved_at,result_path,notes
 37e885e6-9648-4cfa-9d91-0cb74890808c,2026-05-03T12:26:44.6658937+02:00,local,unspecified,C:\Users\johan\Desktop\TerraFlux-Workspace\Brain\terraflux\nervous\queue\message-37e885e6-9648-4cfa-9d91-0cb74890808c.json,pending,,
 37ca1d4f-d5e1-4585-9138-38fe36763aae,2026-05-03T12:29:36.7683559+02:00,claude,test summary,C:\Users\johan\Desktop\TerraFlux-Workspace\Brain\terraflux\nervous\queue\message-37ca1d4f-d5e1-4585-9138-38fe36763aae.json,pending,,
+5e497fe9-1c76-4ec4-aee7-3b88a1f3a6d0,2026-05-04T09:42:35.7389200+02:00,super-copilot,unspecified,C:\Users\johan\Desktop\TerraFlux-Workspace\Brain\terraflux\nervous\queue\message-5e497fe9-1c76-4ec4-aee7-3b88a1f3a6d0.json,pending,,
+b24bc7c5-adf2-49a3-b63b-849b3e493967,2026-05-04T09:43:09.8486562+02:00,super-copilot,test super copilot,C:\Users\johan\Desktop\TerraFlux-Workspace\Brain\terraflux\nervous\queue\message-b24bc7c5-adf2-49a3-b63b-849b3e493967.json,pending,,
+b24bc7c5-adf2-49a3-b63b-849b3e493967,05/04/2026 09:43:09,super-copilot,test super copilot,C:\Users\johan\Desktop\TerraFlux-Workspace\Brain\terraflux\nervous\queue\payload-b24bc7c5-adf2-49a3-b63b-849b3e493967.json,approved,johan,2026-05-04T09:45:39.4739178+02:00,,approved-locally
+b24bc7c5-adf2-49a3-b63b-849b3e493967,05/04/2026 09:43:09,super-copilot,test super copilot,C:\Users\johan\Desktop\TerraFlux-Workspace\Brain\terraflux\nervous\queue\payload-b24bc7c5-adf2-49a3-b63b-849b3e493967.json,approved,johan,2026-05-04T09:47:01.4159711+02:00,,approved-locally
